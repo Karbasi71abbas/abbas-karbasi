@@ -952,6 +952,83 @@
                 });
             });
         }
+        <!-- این کدها را در <head> سایت اضافه کنید -->
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="خدمات نقشه‌برداری و مهندسی نقشه توسط مهندس عباس کرباسی. نقشه‌برداری ملکی، توپوگرافی، GPS و محاسبات مساحت">
+<meta name="keywords" content="نقشه‌برداری، مهندس کرباسی، نقشه‌برداری ملکی، توپوگرافی، GPS، مساحت، مهندسی نقشه">
+<meta name="author" content="مهندس عباس کرباسی">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph (فیسبوک، تلگرام) -->
+<meta property="og:title" content="مهندس عباس کرباسی - متخصص نقشه‌برداری">
+<meta property="og:description" content="خدمات تخصصی نقشه‌برداری، توپوگرافی و مهندسی نقشه">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourwebsite.com">
+<meta property="og:image" content="https://yourwebsite.com/images/logo.jpg">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="مهندس عباس کرباسی - متخصص نقشه‌برداری">
+<meta name="twitter:description" content="خدمات تخصصی نقشه‌برداری و مهندسی نقشه">
+
+<!-- Schema.org (Rich Snippets) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "مهندس عباس کرباسی",
+  "description": "خدمات نقشه‌برداری و مهندسی نقشه",
+  "url": "https://yourwebsite.com",
+  "telephone": "+98-912-345-6789",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "خیابان ولیعصر",
+    "addressLocality": "تهران",
+    "addressCountry": "IR"
+  },
+  "priceRange": "$$",
+  "serviceArea": "ایران"
+}
+</script>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://yourwebsite.com">
+
+<!-- Language -->
+<meta http-equiv="content-language" content="fa">
+
+<!-- Viewport for mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Sitemap for Google -->
+<!-- فایل sitemap.xml بسازید: -->
+<!-- 
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://yourwebsite.com/</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+-->
+
+<!-- Google Analytics (اختیاری) -->
+<!-- 
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+-->
 
         validateForm();
 
