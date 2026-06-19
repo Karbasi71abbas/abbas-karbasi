@@ -1,1038 +1,466 @@
-# abbas-karbasi
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مهندس عباس کرباسی - متخصص نقشه برداری</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مهندسی نقشه‌برداری و GIS - عباس کرباسی</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap');
 
-        body {
-            font-family: 'Tahoma', 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  body {
+    font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
+    background: #F4F7FB;
+    color: #1a1a2e;
+    direction: rtl;
+  }
 
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
+  header {
+    background: white;
+    border-bottom: 1px solid #e3eaf5;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1565C0;
+  }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
+  .logo-icon {
+    width: 38px;
+    height: 38px;
+    background: #1565C0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+  nav a {
+    color: #444;
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 1.5rem;
+  }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
+  nav a:hover { color: #1565C0; }
 
-        .nav-links a:hover {
-            color: #667eea;
-        }
+  .hero {
+    background: linear-gradient(135deg, #0D47A1 0%, #1565C0 50%, #1976D2 100%);
+    color: white;
+    padding: 5rem 2rem;
+    text-align: center;
+  }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: #667eea;
-            transition: width 0.3s ease;
-        }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+  }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
 
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
+  .hero p {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    line-height: 1.9;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
-            overflow: hidden;
-        }
+  .btn-white {
+    background: white;
+    color: #1565C0;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 28px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: none;
+    display: inline-block;
+  }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
+  .btn-outline {
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.6);
+    padding: 12px 32px;
+    border-radius: 28px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: none;
+    display: inline-block;
+  }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: white;
-            max-width: 800px;
-        }
+  .section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: slideInUp 1s ease;
-        }
+  .section-label {
+    font-size: 12px;
+    color: #1976D2;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            animation: slideInUp 1s ease 0.2s both;
-        }
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a2e;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
 
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            animation: slideInUp 1s ease 0.4s both;
-            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.3);
-        }
+  .section-sub {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.4);
-        }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
 
-        /* Sections */
-        section {
-            padding: 80px 0;
-            background: white;
-            margin: 20px 0;
-            border-radius: 20px;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
-        }
+  .service-card {
+    background: white;
+    border: 1px solid #e3eaf5;
+    border-radius: 14px;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
 
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #2c3e50;
-            position: relative;
-        }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(21,101,192,0.12);
+  }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    background: #E3F2FD;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 26px;
+  }
 
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+  .service-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
 
-        .service-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+  .service-card p {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.7;
+  }
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
+  .about-section {
+    background: white;
+    border-top: 1px solid #e3eaf5;
+    border-bottom: 1px solid #e3eaf5;
+  }
 
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #667eea;
-        }
+  .about-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
+  .about-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1565C0, #42A5F5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 50px;
+    color: white;
+  }
 
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 3rem;
-        }
+  .about-text { flex: 1; min-width: 260px; }
 
-        .gallery-item {
-            position: relative;
-            height: 200px;
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+  .about-text h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.25rem;
+  }
 
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
+  .about-title-sub {
+    font-size: 13px;
+    color: #1976D2;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+  .about-text p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+  }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+  .stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
 
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+  .stat { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 700; color: #1565C0; }
+  .stat-label { font-size: 12px; color: #888; margin-top: 2px; }
 
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
+  .contact-section { background: #F4F7FB; }
 
-        .gallery-overlay h4 {
-            color: white;
-            font-size: 1.2rem;
-            text-align: center;
-        }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 0;
+  }
 
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
+  .contact-card {
+    background: white;
+    border: 1px solid #e3eaf5;
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
-        .about-image {
-            text-align: center;
-        }
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    background: #E3F2FD;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
 
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 8px solid #667eea;
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-        }
+  .contact-info label {
+    font-size: 11px;
+    color: #999;
+    display: block;
+    margin-bottom: 4px;
+  }
 
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-        }
+  .contact-info a, .contact-info span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1565C0;
+    text-decoration: none;
+    word-break: break-all;
+  }
 
-        /* Contact Form */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
+  .cta-section {
+    background: linear-gradient(135deg, #0D47A1, #1976D2);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+  .cta-section h2 { font-size: 26px; font-weight: 700; margin-bottom: 0.75rem; }
+  .cta-section p { font-size: 15px; opacity: 0.85; margin-bottom: 2rem; line-height: 1.8; }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
+  footer {
+    background: #0D47A1;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 12px;
+  }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e8ed;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #667eea;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #667eea;
-        }
-
-        /* Animations */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    nav { display: none; }
+    .about-inner { flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">مهندس عباس کرباسی</div>
-            <ul class="nav-links">
-                <li><a href="#home">خانه</a></li>
-                <li><a href="#services">خدمات</a></li>
-                <li><a href="#gallery">گالری</a></li>
-                <li><a href="#about">درباره ما</a></li>
-                <li><a href="#contact">تماس</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>مهندس عباس کرباسی</h1>
-            <p>متخصص نقشه‌برداری و خدمات مهندسی دقیق</p>
-            <a href="#services" class="cta-button">مشاهده خدمات</a>
+<header>
+  <div class="logo">
+    <div class="logo-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+        <line x1="9" y1="3" x2="9" y2="18"/>
+        <line x1="15" y1="6" x2="15" y2="21"/>
+      </svg>
+    </div>
+    GIS کرباسی
+  </div>
+  <nav>
+    <a href="#services">خدمات</a>
+    <a href="#about">درباره ما</a>
+    <a href="#contact">تماس</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">GIS · نقشه‌برداری · عکس‌های هوایی</div>
+  <h1>مهندسی نقشه‌برداری<br>و خدمات GIS</h1>
+  <p>ارائه خدمات تخصصی نقشه‌برداری زمینی، نرم‌افزارهای GIS<br>و تهیه عکس‌های هوایی قدیمی با دقت و کیفیت بالا</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-white">تماس با ما</a>
+    <a href="#services" class="btn-outline">مشاهده خدمات</a>
+  </div>
+</section>
+
+<div id="services">
+<div class="section">
+  <p class="section-label">SERVICES</p>
+  <h2 class="section-title">خدمات ما</h2>
+  <p class="section-sub">طیف گسترده‌ای از خدمات تخصصی نقشه‌برداری و GIS برای پروژه‌های شما</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🗺️</div>
+      <h3>نقشه‌برداری زمینی</h3>
+      <p>برداشت دقیق زمینی با تجهیزات مدرن و استانداردهای روز</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💻</div>
+      <h3>نرم‌افزارهای GIS</h3>
+      <p>پردازش، تحلیل و مدیریت داده‌های مکانی و جغرافیایی</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📷</div>
+      <h3>عکس‌های هوایی قدیمی</h3>
+      <p>تهیه، بازیابی و ارائه تصاویر هوایی تاریخی و آرشیوی</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📐</div>
+      <h3>نقشه کاداستر</h3>
+      <p>تعیین حدود، مساحت و تهیه نقشه‌های ثبتی اراضی</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📡</div>
+      <h3>سیستم‌های GPS</h3>
+      <p>مختصات‌گیری دقیق و پیاده‌سازی نقشه در زمین</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>گزارش‌های فنی</h3>
+      <p>مستندسازی، تهیه و ارائه گزارش‌های تخصصی مهندسی</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="about" class="about-section">
+  <div class="about-inner">
+    <div class="about-avatar">👷</div>
+    <div class="about-text">
+      <h2>عباس کرباسی</h2>
+      <p class="about-title-sub">مهندس نقشه‌برداری و متخصص GIS</p>
+      <p>با سال‌ها تجربه در حوزه نقشه‌برداری، سیستم‌های اطلاعات جغرافیایی (GIS) و تهیه عکس‌های هوایی قدیمی، آماده ارائه خدمات تخصصی به افراد، شرکت‌ها و سازمان‌های دولتی و خصوصی هستم. دقت، سرعت و کیفیت از اصول اساسی کار ماست.</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">+۱۰۰</div>
+          <div class="stat-label">پروژه اجرا شده</div>
         </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <h2 class="fade-in">خدمات ما</h2>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">📐</div>
-                    <h3>نقشه‌برداری ملکی</h3>
-                    <p>انجام نقشه‌برداری دقیق املاک و مستغلات با استفاده از جدیدترین تجهیزات و روش‌های علمی</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🗺️</div>
-                    <h3>نقشه‌برداری توپوگرافی</h3>
-                    <p>تهیه نقشه‌های توپوگرافی با دقت بالا برای پروژه‌های عمرانی و ساختمانی</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🛰️</div>
-                    <h3>GPS و مختصات‌یابی</h3>
-                    <p>خدمات تعیین مختصات دقیق با استفاده از سیستم‌های ماهواره‌ای پیشرفته</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">📊</div>
-                    <h3>محاسبات مساحت</h3>
-                    <p>انجام دقیق محاسبات مساحت و حجم برای پروژه‌های مختلف</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🏗️</div>
-                    <h3>نظارت پروژه</h3>
-                    <p>نظارت و کنترل دقیق بر اجرای پروژه‌های عمرانی و ساختمانی</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">📋</div>
-                    <h3>مشاوره مهندسی</h3>
-                    <p>ارائه مشاوره‌های تخصصی در زمینه نقشه‌برداری و مهندسی</p>
-                </div>
-            </div>
+        <div class="stat">
+          <div class="stat-num">+۱۵</div>
+          <div class="stat-label">سال تجربه</div>
         </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery">
-        <div class="container">
-            <h2 class="fade-in">گالری پروژه‌ها</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><rect width='300' height='200' fill='%23667eea'/><text x='150' y='100' text-anchor='middle' dy='0.3em' fill='white' font-size='16'>نقشه‌برداری ملکی</text></svg>" alt="نقشه‌برداری ملکی">
-                    <div class="gallery-overlay">
-                        <h4>نقشه‌برداری ملکی دقیق</h4>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><rect width='300' height='200' fill='%23764ba2'/><text x='150' y='100' text-anchor='middle' dy='0.3em' fill='white' font-size='16'>نقشه توپوگرافی</text></svg>" alt="نقشه توپوگرافی">
-                    <div class="gallery-overlay">
-                        <h4>نقشه‌های توپوگرافی</h4>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><rect width='300' height='200' fill='%23ff6b6b'/><text x='150' y='100' text-anchor='middle' dy='0.3em' fill='white' font-size='16'>تجهیزات GPS</text></svg>" alt="تجهیزات GPS">
-                    <div class="gallery-overlay">
-                        <h4>تجهیزات مدرن GPS</h4>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><rect width='300' height='200' fill='%23ffa500'/><text x='150' y='100' text-anchor='middle' dy='0.3em' fill='white' font-size='16'>پروژه عمرانی</text></svg>" alt="پروژه عمرانی">
-                    <div class="gallery-overlay">
-                        <h4>نظارت پروژه‌های عمرانی</h4>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><rect width='300' height='200' fill='%2334495e'/><text x='150' y='100' text-anchor='middle' dy='0.3em' fill='white' font-size='16'>محاسبات دقیق</text></svg>" alt="محاسبات">
-                    <div class="gallery-overlay">
-                        <h4>محاسبات مساحت دقیق</h4>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><rect width='300' height='200' fill='%2327ae60'/><text x='150' y='100' text-anchor='middle' dy='0.3em' fill='white' font-size='16'>مشاوره مهندسی</text></svg>" alt="مشاوره">
-                    <div class="gallery-overlay">
-                        <h4>خدمات مشاوره‌ای</h4>
-                    </div>
-                </div>
-            </div>
+        <div class="stat">
+          <div class="stat-num">۱۰۰٪</div>
+          <div class="stat-label">رضایت مشتری</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="fade-in">درباره مهندس عباس کرباسی</h2>
-            <div class="about-content">
-                <div class="about-image fade-in">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><circle cx='150' cy='150' r='140' fill='%23667eea'/><text x='150' y='160' text-anchor='middle' dy='0.3em' fill='white' font-size='24'>مهندس کرباسی</text></svg>" alt="مهندس عباس کرباسی" class="profile-img">
-                </div>
-                <div class="about-text fade-in">
-                    <p>مهندس عباس کرباسی با بیش از ۱۵ سال تجربه در زمینه نقشه‌برداری و مهندسی نقشه، خدمات متنوع و با کیفیتی را در سراسر کشور ارائه می‌دهد.</p>
-                    
-                    <p>تخصص‌های اصلی ما شامل نقشه‌برداری ملکی، توپوگرافی، استفاده از تجهیزات مدرن GPS، و ارائه مشاوره‌های تخصصی می‌باشد.</p>
-                    
-                    <p>با استفاده از جدیدترین تکنولوژی‌ها و روش‌های علمی، ما متعهد به ارائه دقیق‌ترین و با کیفیت‌ترین خدمات به مشتریان عزیز هستیم.</p>
-                    
-                    <p><strong>مدارک و گواهی‌نامه‌ها:</strong></p>
-                    <ul style="margin-top: 1rem; padding-right: 2rem;">
-                        <li>کارشناسی ارشد مهندسی نقشه‌برداری</li>
-                        <li>گواهی‌نامه کار با تجهیزات GPS</li>
-                        <li>مجوز رسمی نقشه‌برداری از سازمان نظام مهندسی</li>
-                        <li>گواهی‌نامه نظارت بر پروژه‌های عمرانی</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<div id="contact" class="contact-section">
+<div class="section">
+  <p class="section-label">CONTACT</p>
+  <h2 class="section-title">تماس با ما</h2>
+  <p class="section-sub">برای مشاوره رایگان و استعلام قیمت با ما در تماس باشید</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div class="contact-info">
+        <label>شماره تماس</label>
+        <a href="tel:+989172947239">۰۹۱۷۲۹۴۷۲۳۹</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div class="contact-info">
+        <label>ایمیل</label>
+        <a href="mailto:abbas.karbasi.gis@gmail.com">abbas.karbasi.gis@gmail.com</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🎓</div>
+      <div class="contact-info">
+        <label>تخصص</label>
+        <span>مهندسی نقشه‌برداری و GIS</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="fade-in">تماس با ما</h2>
-            <div class="contact-form fade-in">
-                <form>
-                    <div class="form-group">
-                        <label for="name">نام و نام خانوادگی:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">شماره تماس:</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">ایمیل:</label>
-                        <input type="email" id="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">نوع خدمت مورد نظر:</label>
-                        <select id="service" name="service" style="width: 100%; padding: 12px; border: 2px solid #e1e8ed; border-radius: 10px; font-size: 1rem;">
-                            <option value="">انتخاب کنید...</option>
-                            <option value="property">نقشه‌برداری ملکی</option>
-                            <option value="topography">نقشه‌برداری توپوگرافی</option>
-                            <option value="gps">خدمات GPS</option>
-                            <option value="calculation">محاسبات مساحت</option>
-                            <option value="supervision">نظارت پروژه</option>
-                            <option value="consultation">مشاوره مهندسی</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">پیام شما:</label>
-                        <textarea id="message" name="message" rows="5" placeholder="لطفاً توضیحات بیشتری از پروژه خود ارائه دهید..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">ارسال پیام</button>
-                </form>
-            </div>
-        </div>
-    </section>
+<section class="cta-section">
+  <h2>برای پروژه خود آماده‌اید؟</h2>
+  <p>همین حالا با ما تماس بگیرید و مشاوره رایگان دریافت کنید</p>
+  <a href="tel:+989172947239" class="btn-white">تماس بگیرید</a>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>اطلاعات تماس</h3>
-                    <p>📞 تلفن: ۰۹۱۲۳۴۵۶۷۸۹</p>
-                    <p>📧 ایمیل: info@karbasi-survey.ir</p>
-                    <p>📍 آدرس: تهران، خیابان ولیعصر</p>
-                </div>
-                <div class="footer-section">
-                    <h3>خدمات سریع</h3>
-                    <p>• نقشه‌برداری اضطراری</p>
-                    <p>• مشاوره رایگان</p>
-                    <p>• خدمات ۲۴ ساعته</p>
-                </div>
-                <div class="footer-section">
-                    <h3>شبکه‌های اجتماعی</h3>
-                    <div class="social-links">
-                        <a href="#">📱</a>
-                        <a href="#">📧</a>
-                        <a href="#">💼</a>
-                    </div>
-                </div>
-            </div>
-            <div style="border-top: 1px solid #444; padding-top: 1rem; margin-top: 2rem;">
-                <p>&copy; ۱۴۰۳ مهندس عباس کرباسی. تمامی حقوق محفوظ است.</p>
-            </div>
-        </div>
-    </footer>
+<footer>
+  © ۱۴۰۳ مهندسی نقشه‌برداری و GIS - عباس کرباسی | تمامی حقوق محفوظ است
+</footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Header background change on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('پیام شما با موفقیت ارسال شد! به زودی با شما تماس خواهیم گرفت.');
-        });
-
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenu.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Gallery hover effects
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.05) rotateY(5deg)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1) rotateY(0deg)';
-            });
-        });
-
-        // Service cards animation on hover
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
-                this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-            });
-        });
-
-        // Add typing effect to hero text
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Initialize typing effect after page load
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                const heroTitle = document.querySelector('.hero h1');
-                const heroSubtitle = document.querySelector('.hero p');
-                
-                if (heroTitle && heroSubtitle) {
-                    typeWriter(heroTitle, 'مهندس عباس کرباسی', 150);
-                    setTimeout(() => {
-                        typeWriter(heroSubtitle, 'متخصص نقشه‌برداری و خدمات مهندسی دقیق', 80);
-                    }, 2500);
-                }
-            }, 1000);
-        });
-
-        // Add parallax effect to hero section
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const rate = scrolled * -0.5;
-            
-            if (hero) {
-                hero.style.transform = `translateY(${rate}px)`;
-            }
-        });
-
-        // Add counter animation for statistics (if you want to add a stats section later)
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const count = parseInt(counter.innerText);
-                const increment = target / 100;
-                
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(() => animateCounters(), 50);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Add floating elements animation
-        function createFloatingElements() {
-            const hero = document.querySelector('.hero');
-            for (let i = 0; i < 6; i++) {
-                const element = document.createElement('div');
-                element.className = 'floating-element';
-                element.style.cssText = `
-                    position: absolute;
-                    width: ${Math.random() * 60 + 20}px;
-                    height: ${Math.random() * 60 + 20}px;
-                    background: rgba(255, 255, 255, 0.1);
-                    border-radius: 50%;
-                    top: ${Math.random() * 100}%;
-                    left: ${Math.random() * 100}%;
-                    animation: float ${Math.random() * 10 + 10}s ease-in-out infinite;
-                    z-index: 1;
-                `;
-                hero.appendChild(element);
-            }
-        }
-
-        // Add CSS for floating animation
-        const floatingCSS = `
-            @keyframes float {
-                0%, 100% { transform: translateY(0px) rotate(0deg); }
-                33% { transform: translateY(-30px) rotate(120deg); }
-                66% { transform: translateY(-60px) rotate(240deg); }
-            }
-        `;
-        
-        const style = document.createElement('style');
-        style.textContent = floatingCSS;
-        document.head.appendChild(style);
-
-        // Initialize floating elements
-        createFloatingElements();
-
-        // Add loading animation
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-
-        // Add search functionality (for future use)
-        function addSearchFunctionality() {
-            const searchInput = document.createElement('input');
-            searchInput.type = 'text';
-            searchInput.placeholder = 'جستجو...';
-            searchInput.style.cssText = `
-                padding: 8px 12px;
-                border: 2px solid #e1e8ed;
-                border-radius: 20px;
-                font-size: 0.9rem;
-                margin-left: 1rem;
-                display: none;
-            `;
-            
-            // Add to navigation (commented out for now)
-            // document.querySelector('nav .container').appendChild(searchInput);
-        }
-
-        // Add theme toggle functionality (for future dark mode)
-        function addThemeToggle() {
-            const themeToggle = document.createElement('button');
-            themeToggle.innerHTML = '🌙';
-            themeToggle.style.cssText = `
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                cursor: pointer;
-                padding: 0.5rem;
-                border-radius: 50%;
-                transition: all 0.3s ease;
-            `;
-            
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-theme');
-                this.innerHTML = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
-            });
-            
-            // Add to navigation (commented out for now)
-            // document.querySelector('nav .container').appendChild(themeToggle);
-        }
-
-        // Add scroll to top button
-        const scrollTopBtn = document.createElement('button');
-        scrollTopBtn.innerHTML = '↑';
-        scrollTopBtn.style.cssText = `
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 1000;
-        `;
-
-        scrollTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        document.body.appendChild(scrollTopBtn);
-
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                scrollTopBtn.style.opacity = '1';
-                scrollTopBtn.style.visibility = 'visible';
-            } else {
-                scrollTopBtn.style.opacity = '0';
-                scrollTopBtn.style.visibility = 'hidden';
-            }
-        });
-
-        // Add contact form validation
-        function validateForm() {
-            const form = document.querySelector('form');
-            const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
-            
-            inputs.forEach(input => {
-                input.addEventListener('blur', function() {
-                    if (!this.value.trim()) {
-                        this.style.borderColor = '#e74c3c';
-                        this.style.boxShadow = '0 0 5px rgba(231, 76, 60, 0.3)';
-                    } else {
-                        this.style.borderColor = '#27ae60';
-                        this.style.boxShadow = '0 0 5px rgba(39, 174, 96, 0.3)';
-                    }
-                });
-            });
-        }
-        <!-- این کدها را در <head> سایت اضافه کنید -->
-
-<!-- SEO Meta Tags -->
-<meta name="description" content="خدمات نقشه‌برداری و مهندسی نقشه توسط مهندس عباس کرباسی. نقشه‌برداری ملکی، توپوگرافی، GPS و محاسبات مساحت">
-<meta name="keywords" content="نقشه‌برداری، مهندس کرباسی، نقشه‌برداری ملکی، توپوگرافی، GPS، مساحت، مهندسی نقشه">
-<meta name="author" content="مهندس عباس کرباسی">
-<meta name="robots" content="index, follow">
-
-<!-- Open Graph (فیسبوک، تلگرام) -->
-<meta property="og:title" content="مهندس عباس کرباسی - متخصص نقشه‌برداری">
-<meta property="og:description" content="خدمات تخصصی نقشه‌برداری، توپوگرافی و مهندسی نقشه">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://yourwebsite.com">
-<meta property="og:image" content="https://yourwebsite.com/images/logo.jpg">
-
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="مهندس عباس کرباسی - متخصص نقشه‌برداری">
-<meta name="twitter:description" content="خدمات تخصصی نقشه‌برداری و مهندسی نقشه">
-
-<!-- Schema.org (Rich Snippets) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "مهندس عباس کرباسی",
-  "description": "خدمات نقشه‌برداری و مهندسی نقشه",
-  "url": "https://yourwebsite.com",
-  "telephone": "+98-912-345-6789",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "خیابان ولیعصر",
-    "addressLocality": "تهران",
-    "addressCountry": "IR"
-  },
-  "priceRange": "$$",
-  "serviceArea": "ایران"
-}
-</script>
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-<!-- Canonical URL -->
-<link rel="canonical" href="https://yourwebsite.com">
-
-<!-- Language -->
-<meta http-equiv="content-language" content="fa">
-
-<!-- Viewport for mobile -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Sitemap for Google -->
-<!-- فایل sitemap.xml بسازید: -->
-<!-- 
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://yourwebsite.com/</loc>
-    <lastmod>2024-01-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-</urlset>
--->
-
-<!-- Google Analytics (اختیاری) -->
-<!-- 
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'GA_MEASUREMENT_ID');
-</script>
--->
-
-        validateForm();
-
-        console.log('وبسایت مهندس عباس کرباسی با موفقیت بارگذاری شد! 🎉');
-    </script>
-</html><www class="abbas com"></www>
 </body>
+</html>
